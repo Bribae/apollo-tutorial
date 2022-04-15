@@ -6,7 +6,6 @@ class LaunchAPI extends RESTDataSource {
     this.baseURL = 'https://api.spacexdata.com/v2/';
   }
 
-  // leaving this inside the class to make the class easier to test
   launchReducer(launch) {
     return {
       id: launch.flight_number || 0,
@@ -28,7 +27,6 @@ class LaunchAPI extends RESTDataSource {
   async getAllLaunches() {
     const response = await this.get('launches');
 
-    // transform the raw launches to a more friendly
     return Array.isArray(response)
       ? response.map(launch => this.launchReducer(launch)) : [];
   }
